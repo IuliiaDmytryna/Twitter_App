@@ -6,7 +6,7 @@ const PostList = ({posts}) => {
 
     const elements = posts.map((item) => {
     return (
-        <li className = "list-group-item">
+        <li key = {item.id} className = "list-group-item">
         <PostListItem {...item}                  // spread operator
         // lable = {item.lable}                 //варіант 2 як отримати дані з серверу
         // important = {item.important}
