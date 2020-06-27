@@ -1,10 +1,20 @@
 import React from 'react';
 import AppHeader from '../app-header';
+import styled from 'styled-components';
 import SearchPanel from '../search-panel';
 import PostStatusFilter from '../post-status-filter';
 import PostList from '../post-list';
 import PostAddForm from '../post-add-form';
-import './app.css';
+//import './app.css';
+
+const AppBlock = styled.div`
+    margin: 0 auto;
+    max-width: 800px;
+`
+
+const AppBlock2 = styled(AppBlock)`
+    background-color: grey;
+`
 
 const App = () => {
 
@@ -15,7 +25,7 @@ const App = () => {
     ];
 
     return (
-        <div className = 'app'>
+        <AppBlock2>
             <AppHeader/>
             <div className = "search-panel d-flex">
                 <SearchPanel/>
@@ -23,7 +33,7 @@ const App = () => {
             </div>
             <PostList posts={data}/>
             <PostAddForm/>
-        </div>
+        </AppBlock2>
     )
 }
 
