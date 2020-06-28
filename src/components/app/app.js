@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AppHeader from '../app-header';
 import styled from 'styled-components';
 import SearchPanel from '../search-panel';
@@ -12,29 +12,41 @@ const AppBlock = styled.div`
     max-width: 800px;
 `
 
-const AppBlock2 = styled(AppBlock)`
-    background-color: grey;
-`
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        data : [
+            {lable: "Going to learn React", important: true, id : "wqwq"},
+            {lable: "That is so good!", important: false, id : "dhdh"},
+            {lable: "I need a break...", important: false, id : "ptpt"}
+        ]
+    };
+    this.deleteItem = this.deleteItem.bind(this);
+}
 
-const App = () => {
+deleteItem(id){
+    this.setState(({data}) => {
+        const index = data.findIndex(elem => elem.id === id);
+        const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
+        return {
+            data: newArr
+        }
+    })
+}
 
-    const data = [
-        {lable: "Going to learn React", important: true},
-        {lable: "That is so good!", important: false},
-        {lable: "I need a break...", important: false}
-    ];
-
+render() {
     return (
-        <AppBlock2>
+        <AppBlock>
             <AppHeader/>
             <div className = "search-panel d-flex">
                 <SearchPanel/>
                 <PostStatusFilter/>
             </div>
-            <PostList posts={data}/>
+            <PostList posts={this.state.data}
+            onDelete = {this.deleteItem}/>
             <PostAddForm/>
-        </AppBlock2>
+        </AppBlock>
     )
 }
-
-export default App;
+}
