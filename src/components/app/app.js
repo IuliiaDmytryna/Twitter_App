@@ -17,12 +17,14 @@ export default class App extends Component {
         super(props);
         this.state = {
         data : [
-            {lable: "Going to learn React", important: true, id : "wqwq"},
-            {lable: "That is so good!", important: false, id : "dhdh"},
-            {lable: "I need a break...", important: false, id : "ptpt"}
+            {lable: "Going to learn React", important: true, id : 1},
+            {lable: "That is so good!", important: false, id : 2},
+            {lable: "I need a break...", important: false, id : 3}
         ]
     };
     this.deleteItem = this.deleteItem.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.maxID = 4;
 }
 
 deleteItem(id){
@@ -35,6 +37,21 @@ deleteItem(id){
     })
 }
 
+addItem(body) {
+    const newItem = {
+        lable: body,
+        important: false,
+        id: this.maxID++
+    }
+    this.setState(({data}) => {
+        const newArr = [...data, newItem];
+        return {
+            data: newArr
+        }
+    }
+    )
+}
+
 render() {
     return (
         <AppBlock>
@@ -45,7 +62,9 @@ render() {
             </div>
             <PostList posts={this.state.data}
             onDelete = {this.deleteItem}/>
-            <PostAddForm/>
+            <PostAddForm
+            onAdd = {this.addItem}
+            />
         </AppBlock>
     )
 }
