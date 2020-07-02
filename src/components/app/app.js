@@ -21,13 +21,15 @@ export default class App extends Component {
             {lable: "That is so good!", important: false, id : 2},
             {lable: "I need a break...", important: false, id : 3}
         ],
-        term: ''
+        term: '',
+        filter: 'all'
     };
     this.deleteItem = this.deleteItem.bind(this);
     this.addItem = this.addItem.bind(this);
     this.onToggleImportant = this.onToggleImportant.bind(this);
     this.onToggleLiked = this.onToggleLiked.bind(this);
     this.onUpdateSearch = this.onUpdateSearch.bind(this);
+    this.onFilterSelect = this.onFilterSelect.bind(this);
 
     this.maxID = 4;
 }
@@ -95,13 +97,24 @@ onUpdateSearch(term) {
     this.setState({term})
 }
 
+filterPost(items, filter) {
+if (filter === 'like') {
+    return items.filter(item => item.like)
+}
+else {
+    return items
+}
+}
 
+onFilterSelect(filter){
+    this.setState({filter})
+}
 
 render() {
-    const {data, term} = this.state;
+    const {data, term, filter} = this.state;
     const liked = data.filter(item => item.like).length;
     const allPosts = data.length;
-    const visiblePosts = this.searchPost(data, term);
+    const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
     return (
         <AppBlock>
             <AppHeader
@@ -112,7 +125,9 @@ render() {
                 <SearchPanel
                 onUpdateSearch = {this.onUpdateSearch}
                 />
-                <PostStatusFilter/>
+                <PostStatusFilter
+                filter = {filter}
+                onFilterSelect = {this.onFilterSelect}/>
             </div>
             <PostList 
             posts={visiblePosts}
