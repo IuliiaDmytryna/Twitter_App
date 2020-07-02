@@ -30,7 +30,7 @@ render(){
             <input
             type = "text"
             placeholder = "Відгук"
-            className = "form-control new-post-lable"
+            className = "form-control new-post-label"
             onChange = {this.onValueChange}
             value = {this.state.text}             //елемент стає контрольований (* до очищення імпута)
             />

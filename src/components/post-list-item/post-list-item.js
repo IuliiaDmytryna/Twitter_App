@@ -3,7 +3,7 @@ import './post-list-item.sass';
 export default class PostListItem extends Component {
 
     render(){
-        const {lable, onDelete, onToggleImportant, onToggleLiked, important, like} = this.props;
+        const {label, onDelete, onToggleImportant, onToggleLiked, important, like} = this.props;
         let classNames = "app-list-item d-flex justify-content-between";
     if (important) {
         classNames +=' important';
@@ -13,8 +13,8 @@ export default class PostListItem extends Component {
     }
         return(
             <div className = {classNames}>
-            <span className = "app-list-item-lable" onClick = {onToggleLiked}>
-            {lable}
+            <span className = "app-list-item-label" onClick = {onToggleLiked}>
+            {label}
             </span>
             <div className = "d-flex justify-content-center align-items-center">
                 <button type = "button" className = "btn-star btn-sm" onClick = {onToggleImportant}>

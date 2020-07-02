@@ -17,9 +17,9 @@ export default class App extends Component {
         super(props);
         this.state = {
         data : [
-            {lable: "Going to learn React", important: true, id : 1},
-            {lable: "That is so good!", important: false, id : 2},
-            {lable: "I need a break...", important: false, id : 3}
+            {label: "Going to learn React", important: true, id : 1},
+            {label: "That is so good!", important: false, id : 2},
+            {label: "I need a break...", important: false, id : 3}
         ],
         term: '',
         filter: 'all'
@@ -46,7 +46,7 @@ deleteItem(id){
 
 addItem(body) {
     const newItem = {
-        lable: body,
+        label: body,
         important: false,
         id: this.maxID++
     }
