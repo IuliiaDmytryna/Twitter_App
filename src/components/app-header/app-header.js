@@ -19,11 +19,11 @@ const Header = styled.div`
   }
 `
 
-const AppHeader = () => {
+const AppHeader = ({liked, allPosts}) => {
     return (
         <Header colored>
             <h1>Iuliia Dmytryna</h1>
-            <h2>5 записів, з них подобалося - 0</h2>
+          <h2>{allPosts} записів, з них подобалося - {liked}</h2>
         </Header>
     )
 }
